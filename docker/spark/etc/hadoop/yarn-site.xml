@@ -1,0 +1,12 @@
+<configuration>
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>spark-master</value>
+        <description>The hostname of the RM.</description>
+    </property>
+</configuration>
+

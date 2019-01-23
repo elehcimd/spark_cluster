@@ -1,0 +1,14 @@
+virtualenv==16.2.0
+Fabric3==1.14.post1
+numpy==1.16.0
+scipy==1.2.0
+pandas==0.23.4
+autopep8==1.4.3
+pycodestyle==2.4.0
+pytest==4.1.1
+matplotlib==3.0.2
+jupyterlab==0.35.4
+jupyter-contrib-nbextensions==0.5.1
+boto3==1.9.83
+s3fs==0.2.0
+awscli==1.16.93

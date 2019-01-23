@@ -1,0 +1,61 @@
+version: '2.1'
+
+
+services:
+
+  spark-master:
+    build: docker/spark
+    environment:
+      - CONTAINER_NAME=spark-master
+      - PROFILE=${PROFILE}
+    volumes:
+      - .:/shared
+      - ${DATA_DIR}:/data
+    entrypoint: ["/shared/docker/spark/entrypoint_master.sh"]
+    ports:
+      - "8080:8080" # web interface on spark master
+      - "7077:7077" # spark master
+      - "8088:8088" # hadoop web interface
+      - "8032:8032" # yarn resource manager
+      - "6022:22" # ssh
+      - "50070:50070" # HDFS NameNode web interface
+
+    healthcheck:
+      test: ["CMD-SHELL", "jps -lm | grep org.apache.spark.deploy.master.Master"]
+      interval: 10s
+      retries: 20
+
+  spark-slave:
+    restart: always
+    build: docker/spark
+    environment:
+      - CONTAINER_NAME=spark-slave
+      - PROFILE=${PROFILE}
+    volumes:
+      - .:/shared
+      - ${DATA_DIR}:/data
+    entrypoint: ["/shared/docker/spark/entrypoint_slave.sh"]
+    depends_on:
+      spark-master:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "jps -lm | grep org.apache.spark.deploy.worker.Worker"]
+      interval: 10s
+      retries: 20
+
+  spark-driver:
+    build: docker/spark
+    environment:
+      - CONTAINER_NAME=spark-driver
+      - PROFILE=${PROFILE}
+    volumes:
+      - .:/shared
+      - ${DATA_DIR}:/data
+      - ~/.aws:/root/.aws:ro
+    ports:
+      - "8889:8888"
+    entrypoint: ["/shared/docker/spark/entrypoint_driver.sh"]
+    depends_on:
+      spark-slave:
+        condition: service_healthy
+

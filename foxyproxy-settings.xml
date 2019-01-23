@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<foxyproxy>
+    <proxies>
+        <proxy name="spark-cluster-socks-proxy" id="132219616" notes="" fromSubscription="false" enabled="true" mode="manual"
+               selectedTabIndex="2" lastresort="false" animatedIcons="true" includeInCycle="true" color="#0055E5"
+               proxyDNS="true" noInternalIPs="false" autoconfMode="pac" clearCacheBeforeUse="false" disableCache="false"
+               clearCookiesBeforeUse="false" rejectCookies="false">
+            <matches>
+                <match enabled="true" name="*spark-master*" pattern="*spark-master*" isRegEx="false" isBlackList="false" isMultiLine="false" caseSensitive="false" fromSubscription="false"/>
+                <match enabled="true" name="*spark-slave*" pattern="*spark-slave*" isRegEx="false" isBlackList="false" isMultiLine="false" caseSensitive="false" fromSubscription="false"/>
+                <match enabled="true" name="*spark-driver*" pattern="*spark-driver*" isRegEx="false" isBlackList="false" isMultiLine="false" caseSensitive="false" fromSubscription="false"/>
+            </matches>
+            <manualconf host="localhost" port="9000" socksversion="5" isSocks="true" username="" password="" domain=""/>
+        </proxy>
+    </proxies>
+</foxyproxy>
