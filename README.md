@@ -179,7 +179,6 @@ The spark_cluster project is released under the MIT license. Please see [LICENSE
 Contributors include:
 
 * Michele Dallachiesa: https://github.com/elehcimd
-* Adrian Loy: https://github.com/adrianloy
 
 
 ## Contributing
