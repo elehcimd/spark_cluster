@@ -133,7 +133,7 @@ df1.join(df2, df1.id == df2.id).distinct().count()
 
 This example is also included in the included notebook demo.
 
-## Execution flow (or, how everything gets glued together at startup)
+## Execution flow
 
 * Docker image: `docker/spark` defines the image for containers `spark-master`, `spark-slave`, and `spark-driver`
 * Container entrypoints, dependencies, and health checks are defined in `docker-compose.yml`: `spark-driver` depends on `spark-slave` and `spark-master`, `spark-slave` depends on `spark-master`
@@ -170,6 +170,17 @@ To fix some common pep8 errors in the code:
 ```
 fab fix_pep8
 ```
+
+
+## Credits and license
+
+The spark_cluster project is released under the MIT license. Please see [LICENSE.txt](https://github.com/minodes/hmm_filter/blob/master/LICENSE.txt).
+
+Contributors include:
+
+* Michele Dallachiesa: https://github.com/elehcimd
+* Adrian Loy: https://github.com/adrianloy
+
 
 ## Contributing
 
