@@ -11,9 +11,9 @@ metastore_db/
 *.py[cod]
 *.tmp
 *.html
+data/notebooks/root
 .DS_Store
 .python-version
 derby.log
 id_rsa
 id_rsa.pub
-
