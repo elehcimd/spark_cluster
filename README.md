@@ -174,7 +174,7 @@ fab fix_pep8
 
 ## Credits and license
 
-The spark_cluster project is released under the MIT license. Please see [LICENSE.txt](https://github.com/minodes/hmm_filter/blob/master/LICENSE.txt).
+The spark_cluster project is released under the MIT license. Please see [LICENSE.txt](https://github.com/minodes/spark_cluster/blob/master/LICENSE.txt).
 
 Contributors include:
 
