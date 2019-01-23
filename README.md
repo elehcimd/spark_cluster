@@ -77,27 +77,27 @@ The same applies to access the remote Spark master node:`fab ssh_master:XYZ`.
 
 The following `fab` tasks are defined:
 
-* build: Stop containers (if running) and build image
-* `copy_keys`: Copy local SSH keys to server host
-* `fix_pep8`: Fix a few common and easy-to-fix PEP8 mistakes
-* `generate_ssh_keys`: Generate SSH key pair to be used within cluster and to SSH into the spark-master container
-* `kill`: Terminate containers as fast as possible, might cause corrupted files in the /data directory
-* `logs`: Print live stdout/stderr from Docker containers
-* `ps`: List active containers
-* `rsync`: Synchronise local spark_cluster directory to remote server
-* `shell`: Open shell on docker-driver container
+* build: stop containers (if running) and build image
+* `copy_keys`: copy local SSH keys to server host
+* `fix_pep8`: fix a few common and easy-to-fix PEP8 mistakes
+* `generate_ssh_keys`: generate SSH key pair to be used within cluster and to SSH into the spark-master container
+* `kill`: terminate containers as fast as possible, might cause corrupted files in the /data directory
+* `logs`: print live stdout/stderr from Docker containers
+* `ps`: list active containers
+* `rsync`: synchronise local spark_cluster directory to remote server
+* `shell`: open shell on docker-driver container
 * `ssh`: ssh into remote server
-* `ssh_master`: SSH into the spark-master Docker container
-* `start`: Start Docker containers: spark-master, spark-slave(s), spark-driver
-* `stop`: Terminate Docker containers nicely and cleanly
-* `test`: Run all tests
-* `test_pep8`: Run only pep8 test
-* `test_sx`: Run all tests printing output and terminating tests at first failure
-* `tunnel`: Create SSH port forwarding tunnel from localhost to spark-driver container network
+* `ssh_master`: ssh into the spark-master Docker container
+* `start`: start Docker containers: spark-master, spark-slave(s), spark-driver
+* `stop`: terminate Docker containers nicely and cleanly
+* `test`: run all tests
+* `test_pep8`: run only pep8 test
+* `test_sx`: run all tests printing output and terminating tests at first failure
+* `tunnel`: create SSH port forwarding tunnel from localhost to spark-driver container network
 
 ## Accessing HDFS from command line
 
-You can access the HDFS filesystem from any container as follows:
+You can access the HDFS filesystem from any container. Examples:
 
 * Copy file to rood directory: `hdfs dfs -put /shared/README.md /`
 * List contents of root directory: `hdfs dfs -ls /`
