@@ -86,7 +86,7 @@ The following `fab` tasks are defined:
 * `ps`: List active containers
 * `rsync`: Synchronise local spark_cluster directory to remote server
 * `shell`: Open shell on docker-driver container
-* `ssh`: SSH to remote server
+* `ssh`: ssh into remote server
 * `ssh_master`: SSH into the spark-master Docker container
 * `start`: Start Docker containers: spark-master, spark-slave(s), spark-driver
 * `stop`: Terminate Docker containers nicely and cleanly
