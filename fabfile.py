@@ -200,6 +200,9 @@ def tunnel(host="localhost"):
     """
     Create SSH port forwarding tunnel from localhost to spark-driver container network
     """
+
+    print("Starting tunnel ... (ctrl-c to interrupt it)")
+
     cmd = 'ssh -o ConnectTimeout=5 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i docker/spark/id_rsa -p {master_ssh_port} root@{host} -ND 9000'.format(
         host=host, master_ssh_port=master_ssh_port)
 
