@@ -1,24 +1,54 @@
-# Containerized Spark cluster for Data Science with Jupyter
+# Containerized Spark cluster for Data Science with Jupyter for both Python and Scala
 
-This project lets you create a Spark cluster based on `ubuntu:18.04`, `OpenJDK 8`, `Spark 2.4.0`, `Hadoop 2.8.5`, `Python 3.6` in a few easy steps. Highlights:
+This project lets you create a Spark cluster based on `ubuntu:18.04`, `OpenJDK 8`, `Spark 2.4.5`, `Hadoop 2.8.5`, `Python 3.6` in a few easy steps. Highlights:
 
 * Python `3.6` by default
 * It creates three Docker containers based on the same image: `spark-master`, `spark-slave`, and `spark-driver`
 * PySpark jobs are executed on the `spark-driver` container in client mode
-* The `spark-driver` container provides a `Jupyter` web interface to the cluster, altogether with `PySpark` helper functions and a demo notebook
+* The `spark-driver` container provides a `Jupyter` web interface to the cluster, altogether with `PySpark` helper functions and demo notebooks for Python+Spark and Scala+Spark
 * The `HDFS` filesystem and the `notebooks` directory are persisted in the host-mapped `/data` directory
-* It matches the setup of AWS EMR version `emr-5.20.0`
+* It matches the setup of AWS EMR version `emr-5.28.1` (this uses Spark 2.4.4, we're already on 2.4.5)
 * Python packages for data science and AWS integration already installed: `numpy`, `scipy`, `pandas`, `matplotlib`, `jupyterlab`, `boto3`, `awscli`, `s3fs`
 * Jupyter extensions enabled by default: `jupyter-spark`, `toc2`, `python-markdown`, `code_prettify`, `execute_time`
+
+## Creating a Python environment on MacOS
+
+Install pyenv:
+
+```
+brew update
+brew install pyenv
+brew install pyenv-virtualenv
+```
+
+Add to `~.zshrc`:
+
+```
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+fi
+
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+```
+
+Create environment:
+
+```
+pyenv virtualenv 3.6.10 spark_cluster
+pyenv activate spark_cluster
+pip install Fabric3==1.14.post1
+```
 
 ## Managing a local instance of the cluster
 
 The cluster runs on Docker containers orchestrated with `docker-compose`. All tasks are automated using Fabric.
+Provide at least `4 Gb` of memory to the Docker engine: `"Preferences" > "Advanced" > "Memory"`
 These steps apply to both Linux and MacOS environments, and let you build, start and stop the cluster:
 
 1. Install `docker`: https://docs.docker.com/install/
 2. Install `docker-compose`: https://docs.docker.com/compose/install/
-3. Install the `Fabric3` Python package: `pip install Fabric3`
+3. Install the `Fabric3` Python package: `pip install Fabric3==1.14.post1`
 4. Generate a SSH key pair with the command `fab generate_ssh_keys`
 5. Build Docker image: `fab build`
 6. Start cluster: `fab start`
@@ -48,7 +78,7 @@ Web access to the cluster is handled with FoxyProxy:
 3. Activate proxy configuration
 4. Start SSH tunnel: `fab tunnel`
 
-You can now access these web services inside the cluster:
+You can now access these web services inside the cluster (make sure to start the tunnel first with `fab tunnel`):
 
 * Jupyter lab: http://spark-driver:8888/lab
 * Jupyter notebook: http://spark-driver:8888/tree

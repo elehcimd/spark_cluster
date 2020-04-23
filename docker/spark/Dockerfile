@@ -22,10 +22,13 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
 # Install common packages
 RUN apt-get -fy install wget vim net-tools inetutils-ping p7zip openssh-server ssh rsync htop
 
+# Required for PyObject
+RUN apt-get -fy install libgirepository1.0-dev libcairo2-dev
+
 # Define Java, Hadoop and Spark versions to install
 ENV JDK_VERSION 8
 ENV HADOOP_VERSION 2.8.5
-ENV SPARK_VERSION 2.4.0
+ENV SPARK_VERSION 2.4.5
 
 # Install JDK
 RUN apt-get -fy install openjdk-${JDK_VERSION}-jdk-headless
@@ -86,6 +89,9 @@ RUN jupyter nbextension enable python-markdown/main # {{x}} in markdown cells ge
 RUN jupyter nbextension enable code_prettify/autopep8 # help with PEP8 compliance
 RUN jupyter nbextension enable execute_time/ExecuteTime # print execution time after each cell completes evaluation
 
+# create kernel spec for scala
+RUN python -m spylon_kernel install
+
 # Add spark job progressbar integration for Jupyter notebook
 # This does not work yet on Jupyter lab: https://github.com/mozilla/jupyter-spark/pull/41
 RUN pip3 install jupyter-spark
@@ -96,4 +102,3 @@ RUN jupyter nbextension enable --py widgetsnbextension
 
 # set default working directory
 WORKDIR /data/notebooks
-
