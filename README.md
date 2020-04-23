@@ -1,4 +1,4 @@
-# Containerized Spark cluster for Data Science with Jupyter for both Python and Scala
+# Containerized Spark cluster for Data Science with Jupyter for Python and Scala
 
 This project lets you create a Spark cluster based on `ubuntu:18.04`, `OpenJDK 8`, `Spark 2.4.5`, `Hadoop 2.8.5`, `Python 3.6` in a few easy steps. Highlights:
 
