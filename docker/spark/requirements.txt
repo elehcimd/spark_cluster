@@ -1,6 +1,6 @@
 virtualenv==20.0.18
 Fabric3==1.14.post1
-numpy==1.18.3
+numpy==1.22.0
 scipy==1.4.1
 pandas==1.0.3
 autopep8==1.5.2
